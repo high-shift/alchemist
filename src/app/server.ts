@@ -1,5 +1,6 @@
 import express from 'express';
 import config from '../config';
+import router from './router';
 
 export default class Server {
     app: express.Application;
@@ -8,7 +9,9 @@ export default class Server {
     constructor() {
         this.port = config.PORT;
         this.app = express();
+        this.app.use(router);
     }
+
     listen(): void {
         this.app.listen(this.port, () => console.log(`Server listen at ${this.port}`));
     }
