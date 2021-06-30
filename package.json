@@ -9,12 +9,13 @@
     "build": "rimraf dist && tsc",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
-    "test": "echo Alchemist",
+    "test": "jest",
+    "test:cover": "jest --collect-coverage",
     "prepare": "husky install"
   },
   "husky": {
     "hooks": {
-        "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -22,6 +23,13 @@
       "npm run lint-fix",
       "npm test",
       "git add"
+    ]
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
     ]
   },
   "repository": {
@@ -35,14 +43,17 @@
   },
   "homepage": "https://github.com/high-shift/alchemist#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.12.5",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "eslint": "^7.29.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.6",
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.9",
+    "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.4",
-    "husky": "^6.0.0"
+    "typescript": "^4.3.4"
   }
 }
