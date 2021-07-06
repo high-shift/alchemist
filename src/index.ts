@@ -1,3 +1,4 @@
+import './utils/logger';
 import 'dotenv/config';
 import { createConnection } from 'typeorm';
 import Server from './app/server';
