@@ -25,6 +25,14 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({
+        name: 'uuid',
+        type: 'varchar',
+        length: 150,
+        unique: true
+    })
+    uuid: string;
+
     @Column({ unique: true })
     email: string;
 
@@ -40,14 +48,11 @@ export class User {
     @Column({ default: 'active' })
     status: UserStatus;
 
-    @CreateDateColumn({ name: 'created_at' })
+    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
     createdAt: Date
 
-    @UpdateDateColumn({ name: 'updated_at', nullable: true })
+    @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)' })
     updatedAt: Date
-
-    @Column({ nullable: true })
-    newsletter: boolean
 
     @Column({ name: 'accepted_terms', nullable: true })
     acceptedTerms: boolean
