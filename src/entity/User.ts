@@ -7,7 +7,7 @@ enum UserStatus {
 }
 
 export interface UserJson {
-    id?: string;
+    id?: number;
     email: string;
     name: string;
     password?: string;

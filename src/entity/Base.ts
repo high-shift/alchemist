@@ -1,7 +1,7 @@
 import { PrimaryColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 class BaseEntity {
   @PrimaryColumn()
-  id: string;
+  id: number;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
   createdAt: Date
