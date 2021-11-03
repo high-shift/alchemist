@@ -1,32 +1,13 @@
-import Joi from 'joi';
+import { PrimaryColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+class BaseEntity {
+  @PrimaryColumn()
+  id: string;
 
-interface ValidateResult {
-    valid: boolean;
-    errors: string[]
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
+  createdAt: Date
+
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)' })
+  updatedAt: Date
 }
 
-class Base {
-    schema: Joi.Schema;
-
-    validate(): ValidateResult {
-        if (!this.schema) {
-            throw new Error('Entity must have a schema');
-        }
-
-        const result: ValidateResult = {
-            valid: true,
-            errors: []
-        };
-
-        const { error } = this.schema.validate(this, { abortEarly: false });
-
-        if (error) {
-            result.valid = false;
-            result.errors = error.details.map(error => error.message);
-        }
-
-        return result;
-    }
-}
-
-export default Base;
+export default BaseEntity;

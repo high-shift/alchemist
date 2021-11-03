@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column } from 'typeorm';
+import BaseEntity from './Base';
 
 enum UserStatus {
     active = 'active',
@@ -6,7 +7,7 @@ enum UserStatus {
 }
 
 export interface UserJson {
-    id?: number;
+    id?: string;
     email: string;
     name: string;
     password?: string;
@@ -17,21 +18,11 @@ export interface UserJson {
 }
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
     constructor(params: UserJson) {
+        super();
         Object.assign(this, params);
     }
-
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column({
-        name: 'uuid',
-        type: 'varchar',
-        length: 150,
-        unique: true
-    })
-    uuid: string;
 
     @Column({ unique: true })
     email: string;
@@ -48,23 +39,14 @@ export class User {
     @Column({ default: 'active' })
     status: UserStatus;
 
-    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
-    createdAt: Date
-
-    @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)' })
-    updatedAt: Date
-
     @Column({ name: 'accepted_terms', nullable: true })
     acceptedTerms: boolean
 
     getJsonBody(): UserJson {
         return {
-            id: this.id,
             email: this.email,
             name: this.name,
             phone_number: this.phoneNumber,
-            created_at: this.createdAt,
-            updated_at: this.updatedAt,
             status: this.status
         };
     }

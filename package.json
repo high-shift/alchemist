@@ -12,7 +12,7 @@
     "test": "jest",
     "test:cover": "jest --collect-coverage",
     "typeorm": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm",
-    "migration:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -n",
+    "migration:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -d src/migration -n",
     "migration:run": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run",
     "migration:clean": "rm -r ./src/migration/*",
     "prepare": "husky install"
@@ -66,14 +66,16 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.1",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mysql2": "^2.3.0",
+    "mysql2": "^2.3.2",
     "pg": "^8.7.1",
     "typeorm": "^0.2.34",
+    "uuid": "^8.3.2",
     "winston": "^3.3.3"
   }
 }
