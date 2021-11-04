@@ -9,6 +9,7 @@ export default class Server {
     constructor() {
         this.port = config.PORT;
         this.app = express();
+        this.app.use(express.json());
         this.app.use(router);
     }
 

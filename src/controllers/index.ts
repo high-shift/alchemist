@@ -13,6 +13,7 @@ const mainController = new MainController();
 const userController = new UserController(
     schema.userSchema,
     repository.userRepository,
+    repository.accountRepository,
     utils.encrypter,
     utils.token
 );

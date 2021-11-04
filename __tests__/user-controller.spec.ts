@@ -57,6 +57,7 @@ test('Should create a User register', async () => {
 
     userController.encrypter.hashPassword = jest.fn().mockReturnValue('hashed_password');
     userController.userRepository.save = jest.fn().mockReturnValue({});
+    userController.accountRepository.save = jest.fn().mockReturnValue({});
     userController.userSchema.validate = jest.fn().mockReturnValue(validateUser);
 
     const result = await userController.register(request, response);

@@ -1,15 +1,17 @@
 import { Request, Response } from 'express';
 
-import { UserRepository } from '../repository/protocols';
+import { UserRepository, AccountRepository } from '../repository/protocols';
 import { Encrypter, Token } from '../utils/protocols';
 import { UserSchema } from '../schema/protocols';
 import { User } from '../entity/User';
 
 import { missingParameters, serverError, ok, conflict, notFound, unauthorized } from '../http';
 import { underscoreToCamelCase } from '../utils/helpers';
+import { Account } from '../entity/Account';
 
 class UserController {
     public userRepository: UserRepository;
+    public accountRepository: AccountRepository;
     public userSchema: UserSchema;
     public encrypter: Encrypter;
     public token: Token;
@@ -17,10 +19,12 @@ class UserController {
     constructor(
         userSchema: UserSchema,
         userRepository: UserRepository,
+        accountRepository: AccountRepository,
         encrypter: Encrypter,
         token: Token
     ) {
         this.userRepository = userRepository;
+        this.accountRepository = accountRepository;
         this.userSchema = userSchema;
         this.encrypter = encrypter;
         this.token = token;
@@ -28,6 +32,7 @@ class UserController {
 
     async register(request: Request, response: Response): Promise<Response> {
         try {
+            console.log(request.body);
             const bodyCheck = this.userSchema.validate(request.body);
 
             if (!bodyCheck.valid) {
@@ -36,11 +41,14 @@ class UserController {
 
             const hashedPassword = await this.encrypter.hashPassword(request.body.password);
             const user = new User({ ...underscoreToCamelCase(request.body), password: hashedPassword });
+            const account = new Account();
+            account.users = [user];
             await this.userRepository.save(user);
+            await this.accountRepository.save(account);
 
             return ok(response, user.getJsonBody());
         } catch (error) {
-            console.log(error);
+            console.log(error, 'asdfsfdsa');
 
             if (error.code && error.code === 'ER_DUP_ENTRY') {
                 return conflict(response, 'user already exists');

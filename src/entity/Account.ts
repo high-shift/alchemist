@@ -22,9 +22,9 @@ export interface AccountJson {
 
 @Entity()
 export class Account extends BaseEntity {
-    constructor(params: AccountJson) {
+    constructor() {
         super();
-        Object.assign(this, params);
+        // Object.assign(this, params);
     }
 
     @Column({ default: 'active' })
