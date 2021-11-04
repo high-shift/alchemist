@@ -1,4 +1,4 @@
-import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { Account } from './Account';
 import BaseEntity from './Base';
 
@@ -43,8 +43,7 @@ export class User extends BaseEntity {
     @Column({ name: 'accepted_terms', nullable: true })
     acceptedTerms: boolean
 
-    @OneToOne(() => Account)
-    @JoinColumn()
+    @ManyToOne(() => Account, account => account.users)
     account: Account;
 
     getJsonBody(): UserJson {
