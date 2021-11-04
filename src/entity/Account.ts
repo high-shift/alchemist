@@ -33,7 +33,7 @@ export class Account extends BaseEntity {
     @Column({ default: 'active' })
     status: AccountStatus;
 
-    @Column({ default: 'active' })
+    @Column({ default: 'basic' })
     type: AccountType;
 
     getJsonBody(): AccountJson {
