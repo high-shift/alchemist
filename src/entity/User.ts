@@ -1,4 +1,5 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Account } from './Account';
 import BaseEntity from './Base';
 
 enum UserStatus {
@@ -41,6 +42,10 @@ export class User extends BaseEntity {
 
     @Column({ name: 'accepted_terms', nullable: true })
     acceptedTerms: boolean
+
+    @OneToOne(() => Account)
+    @JoinColumn()
+    account: Account;
 
     getJsonBody(): UserJson {
         return {
