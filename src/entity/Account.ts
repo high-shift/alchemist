@@ -1,5 +1,6 @@
 import { Entity, Column, OneToMany } from 'typeorm';
 import BaseEntity from './Base';
+import { Integration } from './integration';
 import { User } from './User';
 
 enum AccountStatus {
@@ -35,6 +36,9 @@ export class Account extends BaseEntity {
 
     @OneToMany(() => User, user => user.account)
     users: User[];
+
+    @OneToMany(() => Integration, integration => integration.account)
+    integrations: Integration[];
 
     getJsonBody(): AccountJson {
         return {
