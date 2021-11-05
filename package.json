@@ -47,12 +47,14 @@
   },
   "homepage": "https://github.com/high-shift/alchemist#readme",
   "devDependencies": {
+    "@types/amqplib": "^0.8.2",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.12",
     "@types/jest": "^26.0.23",
     "@types/joi": "^17.2.3",
     "@types/jsonwebtoken": "^8.5.3",
     "@types/node": "^15.12.5",
+    "@types/verror": "^1.10.5",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "eslint": "^7.29.0",
@@ -67,6 +69,7 @@
   },
   "dependencies": {
     "@types/uuid": "^8.3.1",
+    "amqplib": "^0.8.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -75,6 +78,7 @@
     "mysql2": "^2.3.2",
     "pg": "^8.7.1",
     "typeorm": "^0.2.34",
+    "verror": "^1.10.1",
     "winston": "^3.3.3"
   }
 }
