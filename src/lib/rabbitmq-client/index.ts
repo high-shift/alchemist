@@ -72,7 +72,7 @@ class RabbitMQClient extends EventEmitter {
         await this.consumer.init();
     }
 
-    public createChannel(): Promise<Amqlib.Channel> {
+    public async createChannel(): Promise<Amqlib.Channel> {
         if (!this.connection) {
             throw new Error('The connection must be initialized');
         }

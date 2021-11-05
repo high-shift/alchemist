@@ -60,6 +60,7 @@ class MQConsumer extends MQBase {
                 }
             }, opts);
         } catch (err) {
+            console.log(err, '>>>>>>>');
             throw new VError(err, 'Failed to consume the queue');
         }
     }

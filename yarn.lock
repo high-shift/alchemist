@@ -723,6 +723,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/bluebird-global@^3.5.13":
+  version "3.5.13"
+  resolved "https://registry.yarnpkg.com/@types/bluebird-global/-/bluebird-global-3.5.13.tgz#8fee8f1075501e9b8bb56fc0539753c38ecdc8df"
+  integrity sha512-jmq47VdRYy8KPjXDlJ6zO5Ie+l5j0X2fGdSbfCS3mGdM93MTy50dh/EfltIv/QD15hCYTY+0lm/C0Bou1tPYnQ==
+  dependencies:
+    "@types/bluebird" "*"
+
 "@types/bluebird@*":
   version "3.5.36"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.36.tgz#00d9301d4dc35c2f6465a8aec634bb533674c652"
