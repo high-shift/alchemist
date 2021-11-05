@@ -1,4 +1,4 @@
-import { RabbitMQClient } from '../../lib/rabbitmq-client';
+import { RabbitMQClient } from 'rabbitmq-client';
 import config from '../../config';
 import OrderConsumer from './order-consumer';
 
