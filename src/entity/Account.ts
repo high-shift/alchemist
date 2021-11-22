@@ -1,6 +1,6 @@
 import { Entity, Column, OneToMany } from 'typeorm';
 import BaseEntity from './Base';
-import { Integration } from './integration';
+import { Integration } from './Integration';
 import { User } from './User';
 
 enum AccountStatus {
