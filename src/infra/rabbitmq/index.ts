@@ -3,7 +3,7 @@ import config from '../../config';
 import OrderConsumer from './order-consumer';
 
 const amqpUrl = config.RABBITMQ_URL;
-const rabbitMQClient = new RabbitMQClient(amqpUrl, { producer: true, consumer: true });
+const rabbitMQClient = new RabbitMQClient(amqpUrl, { consumer: true });
 
 const loadConsumers = (): void => {
     OrderConsumer();
